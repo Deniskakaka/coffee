@@ -1,0 +1,50 @@
+.formOrder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & div{
+        margin-top: 40px;
+    }
+}
+
+.cappuchino,
+.espresso,
+.latte{
+    position: relative;
+    display: inline-block;
+	cursor: pointer;
+    width: 170px;
+    height: 170px;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQZp4yO6IciZyCO4Bo7F9W5f_EypD_J32SWWw&usqp=CAU");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    margin-left: 30px;
+    border: 10px solid transparent;
+
+    & input {
+        display: none;
+    }
+
+    & span {
+        position: absolute;
+        bottom: -35px;
+        left: 20%;
+        width: 100px;
+        text-align: center;
+    }
+}
+
+.espresso{
+    background-image: url("https://s3.amazonaws.com/secretsaucefiles/photos/images/000/170/822/large/espresso.jpg?1499291377");
+}
+
+.latte{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQnRL3c4jkGW0H7R1zqNYG-EcHHPqcswHLr9A&usqp=CAU");
+}
+
+.check{
+    border: 10px solid #667eba;
+    transition: .6s ease-out;
+}

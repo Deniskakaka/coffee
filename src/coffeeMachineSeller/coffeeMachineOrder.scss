@@ -1,0 +1,52 @@
+.page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formCreateMachine{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid 	#61c6e2;
+    border-radius: 10px;
+    width: 450px;
+    height: 500px;
+    margin-top: 150px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+
+    &__introduced{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & input {
+            margin-top: 10px;
+        }
+    }
+
+    &__chose{
+        position: relative;
+
+        & span {
+            position: absolute;
+            top: -20px;
+            left:40%;
+        }
+
+        & label {
+            margin-left: 10px;
+        }
+    }
+
+    & button{
+        padding: 15px 35px;
+        font-size: 20px;
+        background-color: greenyellow;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}
