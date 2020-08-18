@@ -1,7 +1,7 @@
 import React from "react";
-import CoffeeMachineStore from "../coffeeMachineStore/coffeMachineStoreClass";
-import CoffeeMachineFactory from "../abstractCoffeeMachineDefeult/abstractCoffeeMachineDefault";
 import { Link } from 'react-router-dom';
+import CoffeeMachineFactory from "../../classes/coffeeMachineFactory/coffeeMachineFactory";
+import CoffeeMachinStore from "../../classes/coffeeMachineStore/coffeeMachineStore";
 
 import "./coffeeMachineOrder.scss";
 
@@ -12,7 +12,7 @@ export default class CoffeeSeller extends React.Component {
         country: "China",
         model: "manual",
         milkFrother: true,
-        material: "metalic"
+        material: "metal"
 
     }
 
@@ -36,13 +36,13 @@ export default class CoffeeSeller extends React.Component {
         const onChangeMaterial = (event: React.ChangeEvent<HTMLInputElement>) => {
             this.setState({ material: event.target.value })
         }
-        const createOrder = () => {
-            let coffeeMachine = CoffeeMachineFactory.getCooffeeMachineByOrder(this.state.title, this.state.country, this.state.model)
-            coffeeMachine.isThereAnyMilk(this.state.milkFrother)
-            coffeeMachine.asMaterial(this.state.material)
-            localStorage.setItem("coffeeMachine", JSON.stringify(coffeeMachine))
+        const createCoffeeMAchine = () => {
+            let machine = new CoffeeMachineFactory(this.state.title, this.state.country, this.state.model === "manual" ? "manual" : "automatic");
+            machine.setMaterial(this.state.material === "metal" ? "metal" : "plastic");
+            machine.setmilkFrother(this.state.milkFrother);
+            localStorage.setItem("orderUser", JSON.stringify(machine))
         }
-        let seller = CoffeeMachineStore.callSeller("Vasy", "top 3", "aroma cava")
+        let seller = new CoffeeMachinStore().callSeller("Oleg","LittleCoffee",1)
         return (
             <>
                 <div className="page">
@@ -71,7 +71,7 @@ export default class CoffeeSeller extends React.Component {
                                 value="automatic"
                                 className="model"
                                 onChange={onChangeModel}
-                                checked={this.state.model === "automatic"} />Mechanic</label>
+                                checked={this.state.model === "automatic"} />Automatic</label>
                         </div>
                         <label className="formCreateMachine__introduced">Milk frother
                         <input
@@ -93,10 +93,10 @@ export default class CoffeeSeller extends React.Component {
                                 value="metalic"
                                 className="material"
                                 onChange={onChangeMaterial}
-                                checked={this.state.material === "metalic"} />Metalic
+                                checked={this.state.material === "metal"} />Metalic
                         </label>
                         </div>
-                        <Link to="/order"><button type="submit" onClick={createOrder}>Order</button></Link>
+                        <Link to="/order"><button type="submit" onClick={createCoffeeMAchine}>Order</button></Link>
                     </form>
                 </div>
             </>

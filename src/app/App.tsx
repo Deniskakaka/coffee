@@ -1,6 +1,6 @@
 import React from "react";
-import CoffeeMachineOrder from "../coffeeMachineSeller/CoffeMachineOrder";
-import CoffeeOrder from "../coffeOrder/CoffeeOrder";
+import CoffeeMachineOrder from "../components/coffeeMachineSeller/CoffeMachineOrder";
+import CoffeeOrder from "../components/coffeOrder/CoffeeOrder";
 import { Route, Switch } from 'react-router-dom';
 
 export default function App() {

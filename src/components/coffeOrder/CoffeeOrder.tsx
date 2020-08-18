@@ -1,15 +1,15 @@
 import React from "react";
 import "./CoffeeOrder.scss";
-import CoffeeMachineUser from "../coffeeMachineUser/coffeeMachineUser";
-import Popap from "../popap/Popap";
+import Popup from "../popup/Popup";
+import CoffeeMachineUser from "../../classes/coffeeMachineUser/coffeeMachineUser";
 
 export default class CoffeeOrder extends React.Component {
 
     state = {
         coffee: "espresso",
-        typeCoffee: "ground",
-        modelMachine: JSON.parse(localStorage.getItem("coffeeMachine")).model,
-        milk: JSON.parse(localStorage.getItem("coffeeMachine")).milkFrother,
+        typeCoffee: "cereal",
+        milk: JSON.parse(localStorage.getItem("orderUser")).milkFrother,
+        model: JSON.parse(localStorage.getItem("orderUser")).model,
         well: false,
         broken: false
     }
@@ -25,20 +25,15 @@ export default class CoffeeOrder extends React.Component {
         const onChangeTypeCoffee = (event: React.ChangeEvent<HTMLInputElement>) => {
             this.setState({ typeCoffee: event.target.value })
         }
-        const checkOrder = () => {
-            let orderUser = new CoffeeMachineUser(this.state.milk, this.state.modelMachine)
-            let defaultSettings = orderUser.save();
-            if (this.state.milk && orderUser.model === "automatic" && this.state.typeCoffee === "ground" ||
-                !this.state.milk && this.state.coffee === "espresso") {
-                this.setState({ well: true });
-                orderUser.restore(defaultSettings);
-            }
-            else {
-                this.setState({ broken: true });
-                orderUser.restore(defaultSettings);
-            }
+        const createOrder = () => {
+            let order = new CoffeeMachineUser(this.state.milk, this.state.typeCoffee === "cereal" ? "cereal" : "milled");
+            let saveOrder = order.saveSetting(order);
+            if (order.coffeeType === "milled" && this.state.model === "automatic") {this.setState({well : true})}
+            if (this.state.coffee === "espresso" && this.state.milk === false) {this.setState({well : true})}
+            if (order.coffeeType === "milled" && this.state.model === "manual") {this.setState({broken : true})}
+            if (this.state.milk === false && this.state.coffee !== "espresso") {this.setState({broken : true})}
+            if (this.state.model === "automatic" && order.coffeeType === "cereal") {this.setState({broken : true})}
         }
-
         return (
             <>
                 <form onSubmit={this.preventDefault} className="formOrder">
@@ -73,23 +68,23 @@ export default class CoffeeOrder extends React.Component {
                             <input
                                 type="radio"
                                 className="typeCoffee"
-                                value="ground"
+                                value="cereal"
                                 onChange={onChangeTypeCoffee}
-                                checked={this.state.typeCoffee === "ground"} />Ground
+                                checked={this.state.typeCoffee === "cereal"} />Cereal
                         </label>
                         <label>
                             <input
                                 type="radio"
                                 className="typeCoffee"
-                                value="grain"
+                                value="milled"
                                 onChange={onChangeTypeCoffee}
-                                checked={this.state.typeCoffee === "grain"} />Grain
+                                checked={this.state.typeCoffee === "milled"} />Milled
                         </label>
                     </div>
-                    <button onClick={checkOrder}>Create</button>
+                    <button onClick={createOrder}>Create</button>
                 </form>
-                {this.state.well ? <Popap prop={true} /> : ""}
-                {this.state.broken ? <Popap prop={false} /> : ""}
+                {this.state.well ? <Popup prop={true} /> : ""}
+                {this.state.broken ? <Popup prop={false} /> : ""}
             </>
         )
     }

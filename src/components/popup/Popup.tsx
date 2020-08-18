@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import "./popap.scss";
+import "./popup.scss";
 
 export default function Popap ({ ...props }) {
         return (
