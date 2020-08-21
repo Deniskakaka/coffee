@@ -1,7 +1,9 @@
 import CoffeeMachineDefault from "../coffeeMachineDefault/coffeeMachineDefault";
 import { Material } from "../../types";
 import { Model } from "../../types";
-
+/**
+ * @param  {boolean} milkFrother
+ */
 export default class CoffeeMachine extends CoffeeMachineDefault{
     protected milkFrother : boolean
     protected material : Material

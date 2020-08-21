@@ -1,5 +1,9 @@
 import CoffeeMachineSeller from "../coffeeMachineSeller/sellerClass";
-
+/**
+ * @param  {string} name
+ * @param  {string} store
+ * @param  {number} rank
+ */
 export default  class CoffeeMachinStore {
     private seller: CoffeeMachineSeller;
 

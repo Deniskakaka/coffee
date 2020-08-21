@@ -1,3 +1,8 @@
+/**
+ * @param  {string} name
+ * @param  {string} store
+ * @param  {number} rank
+ */
 export default class CoffeeMachineSelle{
     private name: string
     private store: string

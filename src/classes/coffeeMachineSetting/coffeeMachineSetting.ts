@@ -1,5 +1,8 @@
 import { CoffeeType } from "../../types";
-
+/**
+ * @param  {boolean} coffeeWithMilk
+ * @param  {CoffeeType} coffeeType
+ */
 export default class CoffeeMachineSettings {
     public coffeeWithMilk : boolean
     public coffeeType : CoffeeType
