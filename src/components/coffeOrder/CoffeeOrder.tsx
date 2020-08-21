@@ -2,14 +2,15 @@ import React from "react";
 import "./CoffeeOrder.scss";
 import Popup from "../popup/Popup";
 import CoffeeMachineUser from "../../classes/coffeeMachineUser/coffeeMachineUser";
+import { string } from "yup";
 
 export default class CoffeeOrder extends React.Component {
 
     state = {
         coffee: "espresso",
         typeCoffee: "cereal",
-        milk: JSON.parse(localStorage.getItem("orderUser")).milkFrother,
-        model: JSON.parse(localStorage.getItem("orderUser")).model,
+        milk: localStorage.getItem("orderUser") ? true : JSON.parse(localStorage.getItem("orderUser")!).milkFrother,
+        model: localStorage.getItem("orderUser") ? "automatic" :  JSON.parse(localStorage.getItem("orderUser")!).model,
         well: false,
         broken: false
     }

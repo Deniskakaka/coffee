@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import CoffeeMachineFactory from "../../classes/coffeeMachineFactory/coffeeMachineFactory";
+import { withFormik, FormikProps } from "formik";
+import * as Yup from "yup";
 import CoffeeMachinStore from "../../classes/coffeeMachineStore/coffeeMachineStore";
-
 import "./coffeeMachineOrder.scss";
 
 export default class CoffeeSeller extends React.Component {
@@ -12,8 +13,8 @@ export default class CoffeeSeller extends React.Component {
         country: "China",
         model: "manual",
         milkFrother: true,
-        material: "metal"
-
+        material: "metal",
+        errorTitle: false
     }
 
     preventDefault(event: React.FormEvent<HTMLFormElement>) {
