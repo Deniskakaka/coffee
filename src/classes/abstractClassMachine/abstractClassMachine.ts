@@ -12,7 +12,7 @@ export default abstract class AbstractCoffeeMachineDefault {
  * @param title 
  * @param manufacturerCountry 
  */
-public constructor ( title: string, manufacturerCountry: string) {
+protected constructor ( title: string, manufacturerCountry: string) {
         this.title = title
         this.manufacturerCountry = manufacturerCountry
     }

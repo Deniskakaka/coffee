@@ -4,6 +4,7 @@ import { Model } from "../../types";
 /**
  * @param  {boolean} milkFrother
  */
+
 export default class CoffeeMachine extends CoffeeMachineDefault{
     protected milkFrother : boolean
     protected material : Material
