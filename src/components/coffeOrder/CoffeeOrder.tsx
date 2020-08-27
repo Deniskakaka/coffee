@@ -2,6 +2,7 @@ import React from "react";
 import "./CoffeeOrder.scss";
 import Popup from "../popup/Popup";
 import CoffeeMachineUser from "../../classes/coffeeMachineUser/coffeeMachineUser";
+import AddToppings from "../../classes/addToppings/classAddToppings";
 
 export default class CoffeeOrder extends React.Component {
 
@@ -11,7 +12,8 @@ export default class CoffeeOrder extends React.Component {
         milk: localStorage.getItem("orderUser") ? true : JSON.parse(localStorage.getItem("orderUser") as string).milkFrother,
         model: localStorage.getItem("orderUser") ? "automatic" :  JSON.parse(localStorage.getItem("orderUser")!).model,
         well: false,
-        broken: false
+        broken: false,
+        toppping: new AddToppings(false,false,false)
     }
 
     preventDefault(event: React.FormEvent<HTMLFormElement>) {
@@ -19,6 +21,7 @@ export default class CoffeeOrder extends React.Component {
     }
 
     render() {
+        console.log(this.state.toppping)
         const onChangeCoffee = (event: React.ChangeEvent<HTMLInputElement>) => {
             this.setState({ coffee: event.target.value })
         }
@@ -80,6 +83,11 @@ export default class CoffeeOrder extends React.Component {
                                 onChange={onChangeTypeCoffee}
                                 checked={this.state.typeCoffee === "milled"} />Milled
                         </label>
+                    </div>
+                    <div>
+                        <label>Apple<input type="checkbox" className="topping" onClick={() => this.state.toppping.addApple()}/></label>
+                        <label>Orange<input type="checkbox" className="topping" onClick={() => this.state.toppping.addOrange()}/></label>
+                        <label>Banan<input type="checkbox" className="topping" onClick={() => this.state.toppping.addBanan()}/></label>
                     </div>
                     <button onClick={createOrder}>Create</button>
                 </form>

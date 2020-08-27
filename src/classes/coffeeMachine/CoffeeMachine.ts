@@ -1,6 +1,7 @@
 import CoffeeMachineDefault from "../coffeeMachineDefault/coffeeMachineDefault";
 import { Material } from "../../types";
 import { Model } from "../../types";
+import {number} from "yup";
 /**
  * @param  {boolean} milkFrother
  */
@@ -21,4 +22,3 @@ export default class CoffeeMachine extends CoffeeMachineDefault{
         return new CoffeeMachineDefault(title, manufacturerCountry, model)
     }
 }
-

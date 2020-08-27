@@ -1,4 +1,5 @@
 import { Model } from "../../types";
+import query from 'graphql'
 /**
  * @param  {string} title
  * @param  {string} manufacturerCountry
